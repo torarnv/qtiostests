@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workspace
+   version = "1.0">
+   <FileRef
+      location = "group:qt-developer-usecase/UC1 - Qt Developer.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:ios-developer-usecase/UC2 - iOS Developer.xcodeproj">
+   </FileRef>
+</Workspace>
