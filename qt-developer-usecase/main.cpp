@@ -14,16 +14,35 @@ public:
 
     void exposeEvent(QExposeEvent *)
     {
+        if (isExposed())
+            draw();
+    }
+
+    void resizeEvent(QResizeEvent *ev)
+    {
+        m_backingStore->resize(ev->size());
+
+        if (isExposed())
+            draw();
+    }
+
+    void draw()
+    {
         m_backingStore->beginPaint(QRect(QPoint(0, 0), size()));
         QPaintDevice *device = m_backingStore->paintDevice();
-
         {
             QPainter painter(device);
             painter.fillRect(0, 0, width(), height(), Qt::yellow);
+            painter.setPen(QPen(Qt::green, 3));
+            painter.drawLine(0, 0, width(), height());
         }
-
         m_backingStore->endPaint();
         m_backingStore->flush(QRect(QPoint(0, 0), size()));
+    }
+
+    void mousePressEvent(QMouseEvent *ev)
+    {
+        ev->ignore();
     }
 
 private:
@@ -35,7 +54,7 @@ int main(int argc, char *argv[])
     QGuiApplication app(argc, argv);
 
     Window window;
-    window.showFullScreen();
+    window.show();
 
     return app.exec();
 }
