@@ -43,7 +43,12 @@ public:
 
     void mousePressEvent(QMouseEvent *ev)
     {
-        ev->ignore();
+        if (windowState() & Qt::WindowFullScreen)
+            showNormal();
+        else
+            showFullScreen();
+
+        ev->accept();
     }
 
 private:
@@ -55,7 +60,8 @@ int main(int argc, char *argv[])
     QGuiApplication app(argc, argv);
 
     Window window;
-    window.show();
+    window.setGeometry(0, 0, 100, 100);
+    window.showNormal();
 
     return app.exec();
 }
