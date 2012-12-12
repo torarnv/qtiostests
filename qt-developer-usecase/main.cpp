@@ -2,6 +2,7 @@
 #include <QtGui/QWindow>
 #include <QtGui/QBackingStore>
 #include <QtGui/QPainter>
+#include <QtGui/QResizeEvent>
 
 class Window : public QWindow
 {
