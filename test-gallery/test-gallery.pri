@@ -2,7 +2,13 @@
 
 TEMPLATE = aux
 
-qmake_all.commands = $(QMAKE) $$PWD/test-gallery.pro
+generate_xcode_project.commands = $(QMAKE) $$PWD/test-gallery.pro
+QMAKE_EXTRA_TARGETS += generate_xcode_project
+
+qmake.depends += generate_xcode_project
+QMAKE_EXTRA_TARGETS += qmake
+
+qmake_all.depends += generate_xcode_project
 QMAKE_EXTRA_TARGETS += qmake_all
 
 xcodebuild.commands = xcodebuild
