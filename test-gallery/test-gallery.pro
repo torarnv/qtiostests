@@ -1,6 +1,7 @@
 TARGET = TestGallery
 
 OBJECTIVE_SOURCES += $$files(*.m) $$files(*.mm)
+HEADERS += $$files(*.h)
 
 CONFIG += no_main_wrapper
 QMAKE_IOS_TARGETED_DEVICE_FAMILY = 2 # iPad
