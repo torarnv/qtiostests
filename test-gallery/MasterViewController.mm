@@ -2,7 +2,41 @@
 #import "AppDelegate.h"
 #import "MasterViewController.h"
 
-#import "DetailViewController.h"
+#import "QtViewController.h"
+
+#pragma mark BasicViewController
+
+#include "../test-cases/basic/basicwindow.h"
+
+@interface BasicViewController : QtViewController
+{
+    QWindow *window;
+}
+@end
+
+@implementation BasicViewController
+
+- (void)loadView
+{
+    [super loadView];
+
+    window = new BasicWindow;
+    window->setGeometry(0, 0, 500, 500);
+    window->show();
+
+    [self.view addSubviewForWindow: window];
+}
+
+- (void)dealloc
+{
+    delete window;
+    [super dealloc];
+}
+
+@end
+
+#pragma mark -
+#pragma mark MasterViewController
 
 @interface MasterViewController () {
     NSMutableArray *_objects;
@@ -22,15 +56,14 @@
         }
     }
 
-    [self addTest: @{ @"description": @"Foo", @"controller": @"DetailViewController" }];
-    [self addTest: @{ @"description": @"Bar", @"controller": @"DetailViewController" }];
-
+    [self addTest: @{ @"description": @"Basic", @"controller": [BasicViewController class] }];
+  
     return self;
 }
 
 - (void)dealloc
 {
-    [_detailViewController release];
+    [_currentViewController release];
     [_objects release];
     [super dealloc];
 }
@@ -87,11 +120,11 @@
 {
     NSDictionary *object = _objects[indexPath.row];
 
-    Class dictionaryClass = NSClassFromString([object valueForKey:@"controller"]);
-    self.detailViewController = [[[dictionaryClass alloc] init] autorelease];
+    Class dictionaryClass = [object valueForKey:@"controller"];
+    self.currentViewController = [[[dictionaryClass alloc] init] autorelease];
 
     AppDelegate *delegate = [[UIApplication sharedApplication] delegate];
-    delegate.splitViewController.viewControllers = @[self.navigationController, self.detailViewController];
+    delegate.splitViewController.viewControllers = @[self.navigationController, self.currentViewController];
 }
 
 @end

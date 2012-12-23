@@ -1,6 +1,6 @@
 #import "AppDelegate.h"
 #import "MasterViewController.h"
-#import "DetailViewController.h"
+#import "QtViewController.h"
 
 @implementation AppDelegate
 
