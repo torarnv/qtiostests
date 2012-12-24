@@ -1,1 +1,6 @@
 *.a
+Debug-iphone*/
+Release-iphone*/
+*.build/
+*.xcodeproj/
+Info.plist
