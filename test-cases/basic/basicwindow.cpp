@@ -6,6 +6,11 @@ BasicWindow::BasicWindow()
 {
 }
 
+BasicWindow::~BasicWindow()
+{
+    delete m_backingStore;
+}
+
 void BasicWindow::exposeEvent(QExposeEvent *)
 {
     if (isExposed())

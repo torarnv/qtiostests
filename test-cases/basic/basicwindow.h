@@ -10,6 +10,7 @@ class BasicWindow : public QWindow
 {
 public:
     BasicWindow();
+    ~BasicWindow();
 
     void exposeEvent(QExposeEvent *);
     void resizeEvent(QResizeEvent *ev);
