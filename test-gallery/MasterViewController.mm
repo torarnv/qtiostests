@@ -21,10 +21,10 @@
     [super loadView];
 
     window = new BasicWindow;
-    window->setGeometry(0, 0, 500, 500);
-    window->show();
-
+    window->create();
     [self.view addSubviewForWindow: window];
+
+    window->show();
 }
 
 - (void)dealloc
