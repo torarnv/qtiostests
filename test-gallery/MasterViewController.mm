@@ -67,6 +67,43 @@
 
 @end
 
+#pragma mark -
+#pragma mark TextEdit
+
+#include <textedit.h>
+
+@interface TextEditViewController : QtViewController
+{
+    QWidget *widget;
+}
+@end
+
+@implementation TextEditViewController
+
+- (void)loadView
+{
+    [super loadView];
+
+    Q_INIT_RESOURCE(textedit);
+
+    widget = new TextEdit;
+    widget->winId();
+    [self.view addSubviewForWindow: widget->windowHandle()];
+
+    widget->show();
+}
+
+- (void)dealloc
+{
+    delete widget;
+    Q_CLEANUP_RESOURCE(textedit);
+
+    [super dealloc];
+}
+
+@end
+
+
 
 #pragma mark -
 #pragma mark MasterViewController
@@ -91,6 +128,7 @@
 
     [self addTest: @{ @"description": @"Basic", @"controller": [BasicViewController class] }];
     [self addTest: @{ @"description": @"Wiggly", @"controller": [WigglyViewController class] }];
+    [self addTest: @{ @"description": @"TextEdit", @"controller": [TextEditViewController class] }];
 
     return self;
 }

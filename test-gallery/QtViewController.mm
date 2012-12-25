@@ -10,9 +10,10 @@
 {
     if ((self = [super init])) {
         if (!qApp) {
-            int argc = 0;
-            char *argv[] = {};
-            new QApplication(argc, argv);
+            int *argc = new int;
+            *argc = 0;
+            char **argv = new char*[0];
+            new QApplication(*argc, argv);
         }
     }
 
