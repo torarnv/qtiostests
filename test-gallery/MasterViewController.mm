@@ -6,7 +6,7 @@
 
 #pragma mark BasicViewController
 
-#include "../test-cases/basic/basicwindow.h"
+#include <basicwindow.h>
 
 @interface BasicViewController : QtViewController
 {
@@ -36,6 +36,39 @@
 @end
 
 #pragma mark -
+#pragma mark Wiggly
+
+#include <dialog.h>
+
+@interface WigglyViewController : QtViewController
+{
+    QWidget *widget;
+}
+@end
+
+@implementation WigglyViewController
+
+- (void)loadView
+{
+    [super loadView];
+
+    widget = new Dialog;
+    widget->winId();
+    [self.view addSubviewForWindow: widget->windowHandle()];
+
+    widget->show();
+}
+
+- (void)dealloc
+{
+    delete widget;
+    [super dealloc];
+}
+
+@end
+
+
+#pragma mark -
 #pragma mark MasterViewController
 
 @interface MasterViewController () {
@@ -57,7 +90,8 @@
     }
 
     [self addTest: @{ @"description": @"Basic", @"controller": [BasicViewController class] }];
-  
+    [self addTest: @{ @"description": @"Wiggly", @"controller": [WigglyViewController class] }];
+
     return self;
 }
 
@@ -83,7 +117,7 @@
     if (!_objects) {
         _objects = [[NSMutableArray alloc] init];
     }
-    [_objects insertObject:object atIndex:0];
+    [_objects addObject:object];
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
     [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
 }

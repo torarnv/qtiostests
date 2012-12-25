@@ -1,7 +1,7 @@
 
 #import "QtViewController.h"
 
-#include <QtGui/QGuiApplication>
+#include <QtWidgets/QApplication>
 #include <QtGui/5.0.0/QtGui/qpa/qplatformnativeinterface.h>
 
 @implementation QtViewController
@@ -12,7 +12,7 @@
         if (!qApp) {
             int argc = 0;
             char *argv[] = {};
-            new QGuiApplication(argc, argv);
+            new QApplication(argc, argv);
         }
     }
 
