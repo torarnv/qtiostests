@@ -13,6 +13,11 @@ public:
     {
     }
 
+    ~Window()
+    {
+        delete m_backingStore;
+    }
+
     void exposeEvent(QExposeEvent *)
     {
         if (isExposed())
