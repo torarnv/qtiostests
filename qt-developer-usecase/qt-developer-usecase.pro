@@ -1,4 +1,4 @@
 TARGET = "UC1 - Qt Developer"
 
-SOURCES += main.cpp
+OBJECTIVE_SOURCES += main.mm
 
